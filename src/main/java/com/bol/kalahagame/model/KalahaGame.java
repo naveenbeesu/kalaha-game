@@ -1,9 +1,10 @@
-package com.bol.kalahagame.dto;
+package com.bol.kalahagame.model;
 
 import lombok.*;
 
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class KalahaGame {
     public String id;
     public String presentPlayer;

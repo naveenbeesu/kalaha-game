@@ -1,7 +1,7 @@
 package com.bol.kalahagame.controller;
 
-import com.bol.kalahagame.dto.KalahaGame;
-import com.bol.kalahagame.dto.Step;
+import com.bol.kalahagame.model.KalahaGame;
+import com.bol.kalahagame.model.Step;
 import com.bol.kalahagame.service.KalahaGameSetupServiceImpl;
 import com.bol.kalahagame.service.MoveStonesServiceImpl;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +25,7 @@ public class KalahaGameController {
     }
 
     @PostMapping("moveStones")
+    //@ResponseBody
     public KalahaGame moveStones(@RequestBody Step step) {
         return moveStonesServiceImpl.moveStones(step);
     }

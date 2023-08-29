@@ -1,7 +1,7 @@
 package com.bol.kalahagame.service;
 
-import com.bol.kalahagame.dto.KalahaGame;
-import com.bol.kalahagame.dto.Step;
+import com.bol.kalahagame.model.KalahaGame;
+import com.bol.kalahagame.model.Step;
 
 public interface MoveStonesService {
 

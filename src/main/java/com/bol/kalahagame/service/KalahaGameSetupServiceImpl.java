@@ -1,8 +1,8 @@
 package com.bol.kalahagame.service;
 
-import com.bol.kalahagame.dto.Constants;
-import com.bol.kalahagame.dto.KalahaGame;
-import com.bol.kalahagame.dto.Player;
+import com.bol.kalahagame.model.Constants;
+import com.bol.kalahagame.model.KalahaGame;
+import com.bol.kalahagame.model.Player;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -41,6 +41,6 @@ public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
         Arrays.fill(player1Pits, Constants.NUMBER_OF_STARTING_STONES);
         Arrays.fill(player2Pits, Constants.NUMBER_OF_STARTING_STONES);
 
-        return new KalahaGame(id, Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIGPIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIGPIT_INITIAL_SIZE));
+        return new KalahaGame(id, Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
     }
 }

@@ -1,4 +1,4 @@
-package com.bol.kalahagame.dto;
+package com.bol.kalahagame.model;
 
 import lombok.*;
 

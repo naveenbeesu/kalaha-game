@@ -1,9 +1,9 @@
 package com.bol.kalahagame.service;
 
-import com.bol.kalahagame.dto.Constants;
-import com.bol.kalahagame.dto.KalahaGame;
-import com.bol.kalahagame.dto.Player;
-import com.bol.kalahagame.dto.Step;
+import com.bol.kalahagame.model.Constants;
+import com.bol.kalahagame.model.KalahaGame;
+import com.bol.kalahagame.model.Player;
+import com.bol.kalahagame.model.Step;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -49,17 +49,20 @@ public class MoveStonesServiceImpl implements MoveStonesService {
         int stonesInPit = presentPlayerPits[pitIndex];
         presentPlayerPits[pitIndex] = 0;
         if (stonesInPit == 0) return false;
-        int[] oppositePits = oppositePlayer.stonesInPits;
+        int currentIndex = pitIndex+1;
         while (stonesInPit > 0) {
-            while (pitIndex < Constants.NUMBER_OF_PITS && stonesInPit > 0) {
-                if (stonesInPit == 1 && presentPlayerPits[pitIndex] == 0) {
-                    moveLastStoneInPresentPlayerPit(pitIndex, presentPlayer, oppositePits, presentPlayerPits);
+            int[] oppositePits = oppositePlayer.stonesInPits;
+            while (currentIndex < Constants.NUMBER_OF_PITS && stonesInPit > 0) {
+                if (stonesInPit == 1 && presentPlayerPits[currentIndex] == 0) {
+                    moveLastStoneInPresentPlayerPit(currentIndex, presentPlayer, oppositePits);
+                    stonesInPit = 0;
                 } else {
-                    presentPlayerPits[pitIndex]++;
+                    presentPlayerPits[currentIndex]++;
+                    currentIndex++;
                     stonesInPit--;
-                    pitIndex++;
                 }
             }
+            currentIndex = 0;
             if (stonesInPit > 0) {
                 getsAnotherTurn = true;
                 presentPlayer.stonesInBigPit++;
@@ -83,11 +86,9 @@ public class MoveStonesServiceImpl implements MoveStonesService {
         return !getsAnotherTurn;
     }
 
-    private static void moveLastStoneInPresentPlayerPit(int pitIndex, Player presentPlayer, int[] oppositePits, int[] presentPlayerPits) {
-        presentPlayer.stonesInBigPit += oppositePits[pitIndex];
-        presentPlayer.stonesInBigPit += presentPlayerPits[pitIndex];
-        presentPlayerPits[pitIndex] = 0;
-        oppositePits[pitIndex] = 0;
+    private static void moveLastStoneInPresentPlayerPit(int currentIndex, Player presentPlayer, int[] oppositePits) {
+        presentPlayer.stonesInBigPit += oppositePits[Constants.NUMBER_OF_PITS - currentIndex-1] + 1;
+        oppositePits[Constants.NUMBER_OF_PITS - currentIndex-1] = 0;
     }
 
     private void moveStonesInSecondPlayerPits(KalahaGame currentGame, int pitIndex) {
@@ -108,7 +109,7 @@ public class MoveStonesServiceImpl implements MoveStonesService {
 
     private void selectWinner(KalahaGame currentGame) {
 
-        if (areAllPitsEmpty(currentGame.player1.stonesInPits) || areAllPitsEmpty(currentGame.player2.stonesInPits)) {
+        if (checkAllPitsEmpty(currentGame.player1.stonesInPits) || checkAllPitsEmpty(currentGame.player2.stonesInPits)) {
             int player1StonesInBigPit = currentGame.player1.stonesInBigPit + Arrays.stream(currentGame.player1.stonesInPits).sum();
             int player2StonesInBigPit = currentGame.player2.stonesInBigPit + Arrays.stream(currentGame.player2.stonesInPits).sum();
 
@@ -120,7 +121,7 @@ public class MoveStonesServiceImpl implements MoveStonesService {
         }
     }
 
-    private boolean areAllPitsEmpty(int[] stonesInPits) {
+    private boolean checkAllPitsEmpty(int[] stonesInPits) {
         for (int stonesInPit : stonesInPits) {
             if (stonesInPit != 0) return false;
         }
