@@ -6,4 +6,6 @@ public interface Constants {
     String PLAYER_ONE = "player1";
     String PLAYER_TWO = "player2";
     int BIGPIT_INITIAL_SIZE = 0;
+    String NO_WINNER = "No Winner";
+    String BOARD_TEMPLATE = "board";
 }

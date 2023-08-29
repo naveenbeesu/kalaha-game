@@ -12,7 +12,7 @@ import java.util.UUID;
 @Service
 public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
 
-    private HashMap<String, KalahaGame> listOfGames = new HashMap<>();
+    private final HashMap<String, KalahaGame> listOfGames = new HashMap<>();
     /**
      * @param id game id
      * @return KalahaGame KalhaGame object
@@ -35,11 +35,12 @@ public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
 
     private KalahaGame setupNewGameDetails(String id) {
 
-        Integer[] player1Pits = new Integer[Constants.NUMBER_OF_PITS];
-        Integer[] player2Pits = new Integer[Constants.NUMBER_OF_PITS];
+        int [] player1Pits = new int [Constants.NUMBER_OF_PITS];
+        int [] player2Pits = new int [Constants.NUMBER_OF_PITS];
+
         Arrays.fill(player1Pits, Constants.NUMBER_OF_STARTING_STONES);
         Arrays.fill(player2Pits, Constants.NUMBER_OF_STARTING_STONES);
 
-        return new KalahaGame(id, Constants.PLAYER_ONE, "No Winner Yet", new Player(player1Pits, Constants.BIGPIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIGPIT_INITIAL_SIZE));
+        return new KalahaGame(id, Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIGPIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIGPIT_INITIAL_SIZE));
     }
 }

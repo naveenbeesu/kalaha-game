@@ -1,24 +1,31 @@
 package com.bol.kalahagame.controller;
 
 import com.bol.kalahagame.dto.KalahaGame;
+import com.bol.kalahagame.dto.Step;
 import com.bol.kalahagame.service.KalahaGameSetupServiceImpl;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.bol.kalahagame.service.MoveStonesServiceImpl;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("kalaha")
 public class KalahaGameController {
 
-    private final KalahaGameSetupServiceImpl kalahaGameServiceImpl;
+    private final MoveStonesServiceImpl moveStonesServiceImpl;
+    private final KalahaGameSetupServiceImpl kalahaGameSetupServiceImpl;
 
-    public KalahaGameController(KalahaGameSetupServiceImpl kalahaGameServiceImpl) {
-        this.kalahaGameServiceImpl = kalahaGameServiceImpl;
+    public KalahaGameController(MoveStonesServiceImpl moveStonesServiceImpl, KalahaGameSetupServiceImpl kalahaGameSetupServiceImpl) {
+        this.moveStonesServiceImpl = moveStonesServiceImpl;
+        this.kalahaGameSetupServiceImpl = kalahaGameSetupServiceImpl;
     }
+
 
     @GetMapping("startGame")
     public KalahaGame startGame(@RequestParam String id) {
-        return kalahaGameServiceImpl.startGame(id);
+        return kalahaGameSetupServiceImpl.startGame(id);
+    }
+
+    @PostMapping("moveStones")
+    public KalahaGame moveStones(@RequestBody Step step) {
+        return moveStonesServiceImpl.moveStones(step);
     }
 }
