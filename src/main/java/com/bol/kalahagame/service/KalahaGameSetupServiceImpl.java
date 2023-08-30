@@ -44,7 +44,7 @@ public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
 
         int [] player1Pits = new int [Constants.NUMBER_OF_PITS];
         int [] player2Pits = new int [Constants.NUMBER_OF_PITS];
-
+        //fills each pit of both players with six stones
         Arrays.fill(player1Pits, Constants.NUMBER_OF_STARTING_STONES);
         Arrays.fill(player2Pits, Constants.NUMBER_OF_STARTING_STONES);
 
