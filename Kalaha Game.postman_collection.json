@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "9aee137b-9436-4e65-8db2-a3e0f199520e",
+		"name": "Kalaha Game",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29191320"
+	},
+	"item": [
+		{
+			"name": "Start Game",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/kalaha/startGame?id=e0250a8e-bf34-434f-8494-13872d5b1183",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"kalaha",
+						"startGame"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "e0250a8e-bf34-434f-8494-13872d5b1183"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move Stones",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"c106c1ac-9f05-408c-a447-fd301c961c0a\",\r\n    \"pitIndex\": 2,\r\n    \"player\": \"player1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/kalaha/moveStones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"kalaha",
+						"moveStones"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
