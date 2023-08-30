@@ -3,6 +3,7 @@ package com.bol.kalahagame.service;
 import com.bol.kalahagame.model.Constants;
 import com.bol.kalahagame.model.KalahaGame;
 import com.bol.kalahagame.model.Player;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -10,9 +11,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
 
     private final HashMap<String, KalahaGame> listOfGames = new HashMap<>();
+
     /**
      * @param id game id
      * @return KalahaGame KalhaGame object
@@ -21,6 +24,7 @@ public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
     public KalahaGame startGame(String id) {
         //checks if there is any existing game for the given id
         if(listOfGames.containsKey(id)){
+            log.info("loaded existing game with id {}", id);
             return listOfGames.get(id);
         }
         //if no existing id, starts a new game
@@ -28,8 +32,11 @@ public class KalahaGameSetupServiceImpl implements KalahaGameSetupService {
     }
 
     private KalahaGame startNewGame() {
+
         String id = UUID.randomUUID().toString();
         listOfGames.put(id, setupNewGameDetails(id));
+        log.info("created new game with id {}", id);
+
         return listOfGames.get(id);
     }
 

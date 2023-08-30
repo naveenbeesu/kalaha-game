@@ -1,22 +1,26 @@
 body {
-    padding-top: 75px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Lexend Deca', sans-serif;
+    color: #2E475D;
+}
+h2{
+    text-align: center;
+    background-color: #d4c9c5;
+    color: red;
+}
+.active {
+    cursor: pointer;
+    background-color: #d4c9c5;
 }
 
-#results {
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px solid;
+.inactive {
+    background-color: #755454;
 }
-
-#player1 {
-    flex-direction: row-reverse;
-    background-color: #6dadf1;
-}
-
 .board-box {
     display: flex;
     flex-wrap: nowrap;
-    background-color: #1E90FF;
+    background-color: #edddb9;
     padding: 15px;
 }
 
@@ -29,13 +33,20 @@ body {
     border-radius: 15px;
 }
 
-.active {
-    cursor: pointer;
-    background-color: #f1f1f1;;
+#results {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid;
 }
 
-.inactive {
-    background-color: #6a6767;;
+#currentMove{
+    font-size: 30px;
+    margin: 10px;
+}
+
+#player1 {
+    flex-direction: row-reverse;
+    background-color: #cca347;
 }
 
 #BigPitOfPlayer1 label, #BigPitOfPlayer2 label {
@@ -45,16 +56,17 @@ body {
 }
 
 #BigPitOfPlayer1, #BigPitOfPlayer2 {
-    background-color: #8caee7;;
+    background-color: #e38034;;
 }
 
 #winner {
-    font-size: 25px;
+    font-size: 30px;
     display: none;
 }
 
-#start-game {
-    width: 100%;
-    margin-top: 20px;
-    font-size: 25px;
+#begin-game {
+    width: 50%;
+    font-size: 30px;
+    margin-top: 50px;
+    background-color: #cca347;
 }
