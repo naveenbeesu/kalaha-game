@@ -24,12 +24,12 @@ public class MoveStonesServiceImpl implements MoveStonesService {
      */
     @Override
     public KalahaGame moveStones(Step step) {
-        KalahaGame currentGame = kalahaGameSetupServiceImpl.startGame(step.id());
-        String currentPlayer = step.player();
+        KalahaGame currentGame = kalahaGameSetupServiceImpl.startGame(step.id);
+        String currentPlayer = step.player;
 
-        if (!step.player().equals(currentGame.getPresentPlayer())) return currentGame;
+        if (!step.player.equals(currentGame.getPresentPlayer())) return currentGame;
 
-        int pitIndex = step.pitIndex();
+        int pitIndex = step.pitIndex;
 
         if (currentPlayer.equals(Constants.PLAYER_ONE)) {
             if (moveStonesOfSelectedPit(pitIndex, currentGame)) currentGame.setPresentPlayer(Constants.PLAYER_TWO);
