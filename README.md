@@ -13,7 +13,7 @@ The game is over as soon as one of the sides runs out of stones. The player who 
 You can also find some visual explanations of the game rules by running a Google Search for Mancala or Kalaha game.
 
 
-#How to run this application?
+## How to run this application?
 - Do mvn clean install
 - Run as Spring Boot application
 
@@ -23,3 +23,5 @@ http://localhost:8081/kalaha/
   - Import the attached postman collection and hit the endpoints
   - GET: http://localhost:8080/kalaha/startGame?id=1
   - POST: http://localhost:8081/kalaha/moveStones
+- To view the swagger documentation
+  - http://localhost:8081/swagger
