@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/kalaha/startGame?id=e0250a8e-bf34-434f-8494-13872d5b1183",
+					"raw": "http://localhost:8081/kalaha/startGame?id=e0250a8e-bf34-434f-8494-13872d5b1183",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"kalaha",
 						"startGame"
