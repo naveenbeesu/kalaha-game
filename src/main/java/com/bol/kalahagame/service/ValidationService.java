@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class ValidationService {
-    public void validateInputRequest(Step step) {
+    public void validateInputRequest(Step step) throws InvalidInputException{
         if (step.pitIndex > 5 || step.pitIndex < 0) {
             log.error("PitIndex Should be between 0 to 5 but provided {}", step.pitIndex);
             throw new InvalidInputException("pitIndex", "Should be between 0 to 5");

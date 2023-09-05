@@ -52,8 +52,9 @@ public class KalahaGameControllerTest {
         kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(kalahaGameSetupService.startGame(any())).thenReturn(kalahaGame);
 
-        KalahaGame actualResponse = kalahaGameController.startGame("sample-id");
+        KalahaGame actualResponse = kalahaGameController.startGame("sample-id").getBody();
 
+        assert actualResponse != null;
         assertEquals(Constants.NO_WINNER, actualResponse.winnerOfGame);
         assertEquals(Constants.PLAYER_ONE, actualResponse.presentPlayer);
         assertArrayEquals(expectedPlayer1Pits, actualResponse.player1.stonesInPits);
@@ -71,7 +72,8 @@ public class KalahaGameControllerTest {
         kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_TWO, Constants.NO_WINNER, new Player(expectedPlayer1Pits, 1), new Player(expectedPlayer2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(moveStonesService.moveStones(any(Step.class))).thenReturn(kalahaGame);
 
-        KalahaGame actualResponse = kalahaGameController.moveStones(step);
+        KalahaGame actualResponse = kalahaGameController.moveStones(step).getBody();
+        assert actualResponse != null;
         assertEquals(Constants.NO_WINNER, actualResponse.winnerOfGame);
         assertEquals(Constants.PLAYER_TWO, actualResponse.presentPlayer);
         assertArrayEquals(expectedPlayer1Pits, actualResponse.player1.stonesInPits);
