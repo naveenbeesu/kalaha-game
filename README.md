@@ -26,15 +26,15 @@ http://localhost:8081/kalaha/
 - To view the swagger documentation
   - http://localhost:8081/swagger
 
-##To Run as docker image
+## To Run as docker image
 - To Run as Docker image Please refer this link -> https://www.baeldung.com/dockerizing-spring-boot-application
 - Run the docker quick start terminal and it will be up in few minutes
 - Move to the project directory i.e. kalaha-game
-Create Docker image -> docker build –t kalaha-game.jar
-To check docker image, type command  docker image ls
-You should be able to see the docker image with name -> kalaha-game.jar
-To run the docker the image  docker run -p 9090:8081 kalaha-game.jar
-Here, 9090 is docker host port(it might be different in your system) where our application will be running, and 8081 is our api’s exposed server port
-It should be up now
-We can access the docker image using port 9090  Post http://docker-ipaddress:9090/moveStone
-And also using api server port 8080 -> POST http://localhost:8080/moveStone
+- Create Docker image --> docker build –t kalaha-game.jar
+- To check docker image, type command --> docker image ls
+- You should be able to see the docker image with name -> kalaha-game.jar
+- To run the docker the image --> docker run -p 9090:8081 kalaha-game.jar
+- Here, 9090 is docker host port(it might be different in your system) where our application will be running, and 8081 is our api’s exposed server port
+- It should be up now
+- We can access the docker image using port 9090 --> Post http://docker-ipaddress:9090/moveStone
+- And also using api server port 8080 --> POST http://localhost:8080/moveStone
