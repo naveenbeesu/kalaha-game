@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/kalaha/startGame?id=e0250a8e-bf34-434f-8494-13872d5b1183",
+					"raw": "http://localhost:8081/kalaha/startGame?id=KALAHA70207940",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -25,7 +25,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "e0250a8e-bf34-434f-8494-13872d5b1183"
+							"value": "KALAHA70207940"
 						}
 					]
 				}
@@ -39,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"c106c1ac-9f05-408c-a447-fd301c961c0a\",\r\n    \"pitIndex\": 2,\r\n    \"player\": \"player1\"\r\n}",
+					"raw": "{\r\n    \"id\": \"KALAHA70207940\",\r\n    \"pitIndex\": 1,\r\n    \"player\": \"player2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
