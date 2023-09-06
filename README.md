@@ -38,3 +38,9 @@ http://localhost:8081/kalaha/
 - It should be up now
 - We can access the docker image using port 9090 --> Post http://docker-ipaddress:9090/moveStone
 - And also using api server port 8080 --> POST http://localhost:8080/moveStone
+
+# To Run both Spring Boot Application with MySql as docker images
+
+- To run the complete application along with mysql db -> docker-compose up
+- To check docker images -> docker images
+- To check containers -> docker ps
