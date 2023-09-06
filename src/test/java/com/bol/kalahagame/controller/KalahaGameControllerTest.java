@@ -3,7 +3,7 @@ package com.bol.kalahagame.controller;
 import com.bol.kalahagame.exception.InvalidInputException;
 import com.bol.kalahagame.model.Constants;
 import com.bol.kalahagame.model.KalahaGame;
-import com.bol.kalahagame.model.Player;
+import com.bol.kalahagame.model.PlayerDto;
 import com.bol.kalahagame.model.Step;
 import com.bol.kalahagame.service.KalahaGameSetupServiceImpl;
 import com.bol.kalahagame.service.MoveStonesServiceImpl;
@@ -49,7 +49,7 @@ public class KalahaGameControllerTest {
         int[] expectedPlayer1Pits = new int[]{6, 6, 6, 6, 6, 6};
         int[] expectedPlayer2Pits = new int[]{6, 6, 6, 6, 6, 6};
 
-        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
+        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_ONE, Constants.NO_WINNER, new PlayerDto(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new PlayerDto(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(kalahaGameSetupService.startGame(any())).thenReturn(kalahaGame);
 
         KalahaGame actualResponse = kalahaGameController.startGame("sample-id").getBody();
@@ -69,7 +69,7 @@ public class KalahaGameControllerTest {
         int[] expectedPlayer1Pits = new int[]{6, 6, 6, 0, 7, 7};
         int[] expectedPlayer2Pits = new int[]{7, 7, 7, 6, 6, 6};
 
-        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_TWO, Constants.NO_WINNER, new Player(expectedPlayer1Pits, 1), new Player(expectedPlayer2Pits, Constants.BIG_PIT_INITIAL_SIZE));
+        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_TWO, Constants.NO_WINNER, new PlayerDto(expectedPlayer1Pits, 1), new PlayerDto(expectedPlayer2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(moveStonesService.moveStones(any(Step.class))).thenReturn(kalahaGame);
 
         KalahaGame actualResponse = kalahaGameController.moveStones(step).getBody();
@@ -88,7 +88,7 @@ public class KalahaGameControllerTest {
         int[] expectedPlayer1Pits = new int[]{6, 6, 6, 0, 7, 7};
         int[] expectedPlayer2Pits = new int[]{7, 7, 7, 6, 6, 6};
 
-        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_TWO, Constants.NO_WINNER, new Player(expectedPlayer1Pits, 1), new Player(expectedPlayer2Pits, Constants.BIG_PIT_INITIAL_SIZE));
+        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_TWO, Constants.NO_WINNER, new PlayerDto(expectedPlayer1Pits, 1), new PlayerDto(expectedPlayer2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(moveStonesService.moveStones(any(Step.class))).thenReturn(kalahaGame);
 
         assertThrows(InvalidInputException.class, () -> kalahaGameController.moveStones(step));

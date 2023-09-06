@@ -2,8 +2,9 @@ package com.bol.kalahagame.service;
 
 import com.bol.kalahagame.model.Constants;
 import com.bol.kalahagame.model.KalahaGame;
-import com.bol.kalahagame.model.Player;
+import com.bol.kalahagame.model.PlayerDto;
 import com.bol.kalahagame.model.Step;
+import com.bol.kalahagame.repository.GameRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,10 +12,12 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -23,6 +26,9 @@ public class MoveStonesServiceImplTest {
     private MoveStonesServiceImpl moveStonesService;
     @Mock
     private KalahaGameSetupServiceImpl kalahaGameSetupService;
+
+    @Mock
+    GameRepository gameRepository;
 
     KalahaGame kalahaGame;
     int [] player1Pits;
@@ -43,9 +49,9 @@ public class MoveStonesServiceImplTest {
         int[] expectedPlayer1Pits = new int[]{6, 6, 6, 0, 7, 7};
         int[] expectedPlayer2Pits = new int[]{7, 7, 7, 6, 6, 6};
 
-        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_ONE, Constants.NO_WINNER, new Player(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
+        kalahaGame = new KalahaGame("sample-id", Constants.PLAYER_ONE, Constants.NO_WINNER, new PlayerDto(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new PlayerDto(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(kalahaGameSetupService.startGame(any())).thenReturn(kalahaGame);
-
+        when(gameRepository.findByGameId(anyString())).thenReturn(Optional.empty());
         KalahaGame actualResponse = moveStonesService.moveStones(step);
         assertEquals(Constants.NO_WINNER, actualResponse.winnerOfGame);
         assertEquals(Constants.PLAYER_TWO, actualResponse.presentPlayer);
@@ -61,7 +67,7 @@ public class MoveStonesServiceImplTest {
         int[] expectedPlayer1Pits = new int[]{7, 7, 6, 6, 6, 6};
         int[] expectedPlayer2Pits = new int[]{6, 6, 0, 7, 7, 7};
 
-        kalahaGame = new KalahaGame("1", Constants.PLAYER_TWO, Constants.NO_WINNER, new Player(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new Player(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
+        kalahaGame = new KalahaGame("1", Constants.PLAYER_TWO, Constants.NO_WINNER, new PlayerDto(player1Pits, Constants.BIG_PIT_INITIAL_SIZE), new PlayerDto(player2Pits, Constants.BIG_PIT_INITIAL_SIZE));
         when(kalahaGameSetupService.startGame(any())).thenReturn(kalahaGame);
 
         KalahaGame actualResponse = moveStonesService.moveStones(step);

@@ -4,7 +4,8 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class Player {
+@RequiredArgsConstructor
+public class PlayerDto {
     public int [] stonesInPits;
     public int stonesInBigPit;
 }

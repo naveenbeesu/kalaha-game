@@ -9,6 +9,6 @@ public class KalahaGame {
     public String id;
     public String presentPlayer;
     public String winnerOfGame;
-    public Player player1;
-    public Player player2;
+    public PlayerDto player1;
+    public PlayerDto player2;
 }
